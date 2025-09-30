@@ -62,14 +62,20 @@ Follow these steps to get Cognita running on your local machine.
    ```
 
 3. **Install the required libraries:**  
-   `pip install \-r requirements.txt`
+   ```
+   pip install \-r requirements.txt
+   ```
 
 4. **Set up your environment variables:**  
    Create a file named .env in the root of your project folder and add your credentials:  
-   `GOOGLE_API_KEY="your-google-gemini-api-key"`  
+   ```
+   GOOGLE_API_KEY="your-google-gemini-api-key"
+   ```  
 
 5. **Run the application:**  
-   `streamlit run app.py`
+   ```
+   streamlit run app.py
+   ```
 
    The application should open in your default web browser.
 
