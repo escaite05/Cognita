@@ -64,12 +64,13 @@ def identify_table_from_prompt(user_question, available_tables):
 def classify_command_type(user_question):
     """Uses Gemini to classify the command as DDL, DML, or DQL."""
     prompt = f"""
-    Classify the following user command as one of three types: DDL, DML, or DQL.
-    - DDL (Data Definition Language) commands define or manage database structure, like CREATE, ALTER, DROP.
-    - DML (Data Manipulation Language) commands manage data within tables, like INSERT, UPDATE, DELETE.
-    - DQL (Data Query Language) commands retrieve data, primarily SELECT.
+    Classify the following user command as one of four types: DDL_DATABASE, DDL_TABLE, DML, or DQL.
+    - DDL_DATABASE: For commands that manage entire databases (CREATE DATABASE, DROP DATABASE, etc.).
+    - DDL_TABLE: For commands that manage table structure (CREATE TABLE, ALTER TABLE, DROP TABLE).
+    - DML: For commands that manage data within tables (INSERT, UPDATE, DELETE).
+    - DQL: For commands that retrieve data (SELECT).
 
-    Your response must be a single word: DDL, DML, or DQL.
+    Your response must be a single word: DDL_DATABASE, DDL_TABLE, DML, or DQL.
 
     User Command: "{user_question}"
 
@@ -79,7 +80,7 @@ def classify_command_type(user_question):
         model = genai.GenerativeModel('gemini-2.5-flash')
         response = model.generate_content(prompt)
         classification = response.text.strip().upper()
-        if classification in ["DDL", "DML", "DQL"]:
+        if classification in ["DDL_DATABASE", "DDL_TABLE", "DML", "DQL"]:
             print(f"AI classified command as: {classification}")
             return classification
         return "UNKNOWN"

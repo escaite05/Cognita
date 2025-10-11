@@ -19,15 +19,23 @@ Built with Python, Streamlit, and the Google Gemini API, Cognita can understand 
 
 Cognita doesn't just make a single, naive call to an AI. It follows a robust, multi-step process to ensure accuracy and safety, making it a truly intelligent assistant.
 
-1. **AI Command Classification:** First, the user's prompt is sent to the Gemini API to classify the command type (DDL, DML, or DQL). This determines the entire workflow.  
-2. **DDL Path (Structure Changes):**  
-   * If the command is **DDL** (e.g., CREATE TABLE), the prompt is sent directly to the AI for SQL generation, as no existing table context is needed.  
-3. **DML/DQL Path (Data Operations):**  
-   * **Table Discovery:** The application connects to the database and fetches a list of all available tables.  
-   * **AI Table Identification:** The user's prompt *and* the list of tables are sent to the AI, asking it to identify the most relevant table from the provided options. This dramatically improves accuracy.  
-   * **Schema Fetching:** Once the table is identified, the application runs a DESCRIBE query to get its schema (column names and data types).  
-   * **Final SQL Generation:** The user's prompt, along with the specific table schema, is sent to the AI to generate the final, context-aware, and highly accurate SQL query.  
-4. **Execution & Display:** The generated query is executed against the database, and the results (data, row count, or success message) are displayed to the user.
+1. **AI Command Classification:** First, the user's prompt is sent to the Gemini API to classify the command type (DDL_DATABASE, DDL_TABLE, DML, or DQL). This determines the entire workflow.  
+2. **Smart Connection Strategy:**
+* If the command is DDL_DATABASE (e.g., "create a database"), the app intelligently connects to the MySQL server without a pre-selected database.
+* For all other commands, a database name is required, and the app connects to it directly.
+3. **Context-Aware Execution Path:**
+* Database Commands: If the intent is to manage a database, the SQL is generated and executed immediately.
+* CREATE TABLE Commands: A special, direct path is taken that bypasses table discovery, allowing the first table to be created in an empty database.
+* All Other Table Commands (ALTER, DROP, SELECT, INSERT, etc.): The app follows the full discovery pipeline:
+
+  1. Fetches a list of all existing tables.
+
+  2. Asks the AI to identify the target table from the prompt.
+
+  3. Fetches the specific schema for that table.
+
+  4. Generates the final, context-aware SQL query.
+4. **Execution & Display:** The generated query is executed, and the results (data, row count, or success message) are displayed to the user.
 
 ## **🛠️ Technology Stack**
 
@@ -35,7 +43,6 @@ Cognita doesn't just make a single, naive call to an AI. It follows a robust, mu
 * **Frontend:** Streamlit  
 * **Database:** MySQL (connected via mysql-connector-python)  
 * **AI Model:** Google Gemini API (google-generativeai)  
-* **Secret Management:** python-dotenv
 
 ## **⚙️ Setup and Installation**
 
