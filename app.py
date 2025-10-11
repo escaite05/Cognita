@@ -24,12 +24,10 @@ if st.button("🚀 Execute Command"):
     else:
         with st.spinner("Classifying your command..."):
             command_type = classify_command_type(user_question)
-
         conn = None
-        # --- Final Connection Strategy ---
         if command_type == "DDL_DATABASE":
             st.subheader("Database Management Command Detected")
-            conn = create_connection() # Connect to server, no DB needed
+            conn = create_connection()
         elif command_type in ["DDL_TABLE", "DML", "DQL"]:
             if db_name:
                 conn = create_connection(db_name)
@@ -38,9 +36,7 @@ if st.button("🚀 Execute Command"):
         else:
             st.error("Could not classify the command type. Please try rephrasing.")
 
-        # --- Execution Logic ---
         if conn:
-            # This is the special path for commands like CREATE/DROP DATABASE
             if command_type == "DDL_DATABASE":
                 with st.spinner("Generating SQL query..."):
                     sql_query = get_sql_from_gemini(user_question, "No schema needed.")
@@ -51,19 +47,14 @@ if st.button("🚀 Execute Command"):
                     else: st.error("Error executing database command.")
                 else: st.error("Failed to generate SQL query.")
             
-            # --- UNIFIED LOGIC FOR ALL TABLE-LEVEL COMMANDS ---
-            # This path correctly handles DDL_TABLE, DML, and DQL
             elif command_type in ["DDL_TABLE", "DML", "DQL"]:
                 st.subheader(f"Table-Level Command Detected ({command_type})")
 
-                # Special, direct path for CREATE TABLE command to avoid discovery failure
                 if command_type == "DDL_TABLE" and "create table" in user_question.lower():
                      with st.spinner("Generating CREATE TABLE query..."):
-                        # No schema context is needed to create a new table
                         schema_context = f"Currently in database '{db_name}'. No existing tables needed for context."
                         sql_query = get_sql_from_gemini(user_question, schema_context)
                 else:
-                    # Full discovery pipeline for all other table commands (ALTER, DROP, SELECT, INSERT, etc.)
                     with st.spinner("Discovering tables and identifying context..."):
                         available_tables = get_all_table_names(conn)
                         if not available_tables:
@@ -81,7 +72,6 @@ if st.button("🚀 Execute Command"):
                     with st.spinner("Generating final SQL query..."):
                         sql_query = get_sql_from_gemini(user_question, schema)
                 
-                # Execute the generated query from any of the above paths
                 if not sql_query or "INCOMPLETE" in sql_query.upper():
                     st.warning("Request incomplete. For INSERT/UPDATE, please provide all necessary data.")
                 else:
